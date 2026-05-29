@@ -4,23 +4,35 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [selectedSize, setSelectedSize] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 useEffect(() => {
   const handleScroll = () => {
     setScrolled(window.scrollY > 40);
   };
-
+  setTimeout(() => {
+  setLoading(false);
+}, 1200);
   window.addEventListener("scroll", handleScroll);
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
+if (loading) {
+  return (
+    <div className="flex h-screen items-center justify-center bg-white">
+      <h1 className="text-xl font-light uppercase tracking-[0.6em]">
+        Callejón Zeta
+      </h1>
+    </div>
+  );
+}
   return (
     <main className="min-h-screen bg-white text-black">
      <section className="fixed top-0 left-0 z-[60] w-full bg-black py-2 text-center text-[10px] uppercase tracking-[0.3em] text-white md:text-xs">
   ENVÍOS A TODO MÉXICO • CALIDAD PREMIUM • OVERSIZED FIT
 </section>
       <header
-  className={`fixed left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-full border border-black/10 bg-white/80 px-6 backdrop-blur-xl transition-all duration-500 md:w-[92%] ${
+  className={`fixed left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl px-6 backdrop-blur-xl transition-all duration-500 md:w-[92%] ${
     scrolled ? "top-3 py-3 shadow-lg" : "top-6 py-5"
   }`}
 >
@@ -73,11 +85,11 @@ useEffect(() => {
   className="grid min-h-[110vh] grid-cols-1 pt-32 md:min-h-screen md:grid-cols-2 md:pt-20"
 >
         <div className="animate-[fadeIn_1s_ease-out] flex flex-col justify-center px-8 pt-28 md:px-24 xl:px-32">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em]">
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] animate-fadeUp delay-100">
             MADE IN THE SUR
           </p>
 
-          <h2 className="max-w-4xl text-6xl font-extralight leading-[0.9] tracking-[-0.07em] md:text-8xl xl:text-[10rem]">
+          <h2 className="max-w-4xl text-6xl font-extralight leading-[0.9] tracking-[-0.07em] animate-fadeUp delay-200">
             CALLE
             <br />
             CON ESTILO
@@ -90,7 +102,7 @@ useEffect(() => {
 
           <a
   href="#coleccion"
-  className="w-fit border border-black px-10 py-4 text-sm uppercase tracking-[0.2em] transition duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl"
+  className="w-fit border border-black px-10 py-4 text-sm uppercase tracking-[0.2em] transition duration-300 hover:bg-black hover:text-white animate-fadeUp delay-300"
 >
   VER DROP 001
 </a>
@@ -99,11 +111,12 @@ useEffect(() => {
         <div className="flex min-h-[70vh] items-center justify-center bg-black p-8 md:min-h-screen">
           <div className="flex h-[75vh] w-full items-center justify-center border border-white/20 text-white">
             <div className="flex h-full w-full items-center justify-center p-10 md:p-16">
-  <div className="relative h-[75vh] w-full overflow-hidden border border-white/10">
+  <div className="relative h-[75vh] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d] shadow-[0_20px_60px_rgba(255,255,255,0.04)] transition duration-500 hover:shadow-[0_30px_90px_rgba(255,255,255,0.08)]">
+    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
     <img
       src="/images/hero.jpg"
       alt="Diseño editorial de Callejón Zeta"
-      className="h-full w-full object-contain p-8 transition duration-700 hover:scale-110"
+      className="h-full w-full object-contain p-8 transition duration-700 hover:scale-105 hover:-translate-y-2"
     />
   </div>
 </div>
