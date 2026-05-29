@@ -33,10 +33,10 @@ if (loading) {
 </section>
       <header
   className={`fixed left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl px-6 backdrop-blur-xl transition-all duration-500 md:w-[92%] ${
-    scrolled ? "top-3 py-3 shadow-lg" : "top-6 py-5"
+    scrolled ? "top-3 py-3 shadow-lg" : "top-4 py-3"
   }`}
 >
-        <nav className="flex items-center justify-between px-8 py-5 text-xs uppercase tracking-[0.25em]">
+        <nav className="flex items-center justify-between px-5 py-2 text-[10px] uppercase tracking-[0.22em] md:px-8 md:py-5 md:text-xs md:tracking-[0.25em]">
           <a
   href="#inicio"
   className="font-light tracking-[0.28em] transition duration-300 hover:opacity-50"
@@ -44,7 +44,7 @@ if (loading) {
   CALLEJÓN ZETA
 </a>
 
-          <div className="hidden gap-8 md:flex">
+          <div className="hidden items-center gap-6 md:flex">
             <div className="flex items-center gap-5 text-[10px] uppercase tracking-[0.25em] text-black/70 md:hidden">
   <a href="#coleccion">Comprar</a>
   <a href="#carrito">Carrito</a>
@@ -89,7 +89,7 @@ if (loading) {
             MADE IN THE SUR
           </p>
 
-          <h2 className="max-w-4xl text-6xl font-extralight leading-[0.9] tracking-[-0.07em] animate-fadeUp delay-200">
+          <h2 className="max-w-4xl text-5xl md:text-8xl font-extralight leading-[0.9] tracking-[-0.07em] animate-fadeUp delay-200">
             CALLE
             <br />
             CON ESTILO
@@ -108,10 +108,10 @@ if (loading) {
 </a>
         </div>
 
-        <div className="flex min-h-[70vh] items-center justify-center bg-black p-8 md:min-h-screen">
-          <div className="flex h-[75vh] w-full items-center justify-center border border-white/20 text-white">
+        <div className="flex min-h-[48vh] items-center justify-center bg-black p-6 md:min-h-screen">
+          <div className="flex h-[75vh] w-full items-center justify-center border-0 md:border md:border-white/20 text-white">
             <div className="flex h-full w-full items-center justify-center p-10 md:p-16">
-  <div className="relative h-[75vh] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d] shadow-[0_20px_60px_rgba(255,255,255,0.04)] transition duration-500 hover:shadow-[0_30px_90px_rgba(255,255,255,0.08)]">
+  <div className="relative h-[75vh] w-full overflow-hidden rounded-[28px] border-0 md:border-white/10 bg-[#0d0d0d] shadow-[0_20px_60px_rgba(255,255,255,0.04)] transition duration-500 hover:shadow-[0_30px_90px_rgba(255,255,255,0.08)]">
     <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
     <img
       src="/images/hero.jpg"
@@ -537,7 +537,7 @@ CON CARÁCTER
 <a
   href="https://wa.me/529932191300"
   target="_blank"
-  className="fixed bottom-6 right-6 z-50 rounded-full border border-black/10 bg-white px-5 py-4 text-xs uppercase tracking-[0.25em] text-black shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-black hover:text-white"
+  className="fixed bottom-4 right-4 z-50 rounded-full border border-black/10 bg-white px-4 py-3 text-[10px] uppercase tracking-[0.22em] text-black shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-black hover:text-white md:bottom-6 md:right-6 md:px-5 md:py-4 md:text-xs"
 >
   WhatsApp
 </a>
