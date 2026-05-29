@@ -530,13 +530,6 @@ CON CARÁCTER
 <a
   href="https://wa.me/529932191300"
   target="_blank"
-  className="fixed bottom-6 right-6 z-50 rounded-full bg-black px-6 py-4 text-xs uppercase tracking-[0.25em] text-white shadow-xl transition duration-300 hover:-translate-y-1 hover:bg-neutral-800"
->
-  WhatsApp
-</a>
-<a
-  href="https://wa.me/529932191300"
-  target="_blank"
   className="fixed bottom-4 right-4 z-50 rounded-full border border-black/10 bg-white px-4 py-3 text-[10px] uppercase tracking-[0.22em] text-black shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-black hover:text-white md:bottom-6 md:right-6 md:px-5 md:py-4 md:text-xs"
 >
   WhatsApp
