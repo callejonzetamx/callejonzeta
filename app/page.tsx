@@ -6,6 +6,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
 useEffect(() => {
   const handleScroll = () => {
@@ -516,24 +517,32 @@ CON CARÁCTER
   </span>
 </p>
 <p className="mt-2 text-sm text-gray-500">
-  Cantidad: <span className="font-medium text-black">1</span>
+  Cantidad: <span className="font-medium text-black">{quantity}</span>
 </p>
   <div className="mt-3 flex items-center gap-3">
-    <button className="border border-black/20 bg-[#f7f7f7] px-4 py-2 transition duration-300 hover:bg-black hover:text-white">
-      -
-    </button>
+    <button
+  type="button"
+  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
+  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
+>
+  -
+</button>
 
-    <span>1</span>
+    <span>{quantity}</span>
 
-    <button className="border border-black/20 bg-[#f7f7f7] px-4 py-2 transition duration-300 hover:bg-black hover:text-white">
-      +
-    </button>
+    <button
+  type="button"
+  onClick={() => setQuantity((prev) => prev + 1)}
+  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
+>
+  +
+</button>
   </div>
 </div>
         </div>
 
         <p className="text-lg">
-          $449 MXN
+          ${449 * quantity} MXN
         </p>
       </div>
 
