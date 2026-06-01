@@ -5,9 +5,9 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
 });
-export const metadata: Metadata = {
-  title: "Callejón Zeta",
-  description: "Streetwear premium desde el sur.",
+export const metadata = {
+  title: "CALLEJÓN ZETA | Del sur, con identidad",
+  description: "Oversized fit. Calidad premium. Hecho en México.",
 };
 
 export default function RootLayout({

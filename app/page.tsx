@@ -5,6 +5,7 @@ export default function Home() {
   const [selectedSize, setSelectedSize] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
 useEffect(() => {
   const handleScroll = () => {
@@ -27,58 +28,107 @@ if (loading) {
   );
 }
   return (
-    <main className="min-h-screen bg-white text-black">
+  <main className="min-h-screen bg-white text-black">
+
+    {menuOpen && (
+  <div className="fixed inset-0 z-[999] flex flex-col bg-white px-8 py-10 md:hidden">
+    <div className="mb-12 flex items-center justify-between">
+      <h2 className="text-sm uppercase tracking-[0.35em]">
+        Callejón Zeta
+      </h2>
+
+      <button
+        type="button"
+        onClick={() => setMenuOpen(false)}
+        className="text-sm uppercase tracking-[0.3em]"
+      >
+        Cerrar
+      </button>
+    </div>
+
+    <div className="flex flex-col gap-8 text-3xl font-light uppercase tracking-[-0.04em]">
+      <a href="#coleccion" onClick={() => setMenuOpen(false)}>
+        Colección
+      </a>
+
+      <a href="#nosotros" onClick={() => setMenuOpen(false)}>
+        Nosotros
+      </a>
+
+      <a href="#carrito" onClick={() => setMenuOpen(false)}>
+        Carrito
+      </a>
+    </div>
+    <div className="mt-auto flex gap-6 border-t border-black/10 pt-6 text-xs uppercase tracking-[0.25em] text-black/50">
+  <a
+    href="https://www.instagram.com/callejonzetamx?igsh=Z3NkNm9xaW5zaDUy&utm_source=qr"
+    target="_blank"
+  >
+    Instagram
+  </a>
+
+  <a
+    href="https://www.facebook.com/share/17bGzsyoTy/?mibextid=wwXIfr"
+    target="_blank"
+  >
+    Facebook
+  </a>
+
+  <a
+    href="https://wa.me/529932191300"
+    target="_blank"
+  >
+    WhatsApp
+  </a>
+</div>
+  </div>
+)}
      <section className="fixed top-0 left-0 z-[60] w-full bg-black py-2 text-center text-[10px] uppercase tracking-[0.3em] text-white md:text-xs">
   ENVÍOS A TODO MÉXICO • CALIDAD PREMIUM • OVERSIZED FIT
 </section>
-      <header
-  className={`fixed left-1/2 z-50 w-[95%] -translate-x-1/2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl px-6 backdrop-blur-xl transition-all duration-500 md:w-[92%] ${
-    scrolled ? "top-3 py-3 shadow-lg" : "top-4 py-3"
+<header
+  className={`fixed left-1/2 z-50 w-[88%] -translate-x-1/2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl ${
+    scrolled ? "top-9 py-3 shadow-lg" : "top-10 py-3"
   }`}
 >
-        <nav className="flex items-center justify-between px-5 py-2 text-[10px] uppercase tracking-[0.22em] md:px-8 md:py-5 md:text-xs md:tracking-[0.25em]">
-          <a
-  href="#inicio"
-  className="font-light tracking-[0.28em] transition duration-300 hover:opacity-50"
->
-  CALLEJÓN ZETA
-</a>
+  <div className="flex items-center justify-between px-5 py-2 text-[10px] uppercase tracking-[0.22em]">
+    <a
+      href="#inicio"
+      className="font-light tracking-[0.28em] transition duration-300 hover:opacity-50"
+    >
+      <img
+  src="/Images/logo-cz.png"
+  alt="Callejón Zeta"
+  className="h-14 w-auto object-contain"
+/>
+    </a>
+    <div className="hidden items-center gap-6 md:flex">
+  <a href="#coleccion" className="transition duration-300 hover:opacity-50">
+    Colección
+  </a>
 
-          <div className="hidden items-center gap-6 md:flex">
-            <div className="flex items-center gap-5 text-[10px] uppercase tracking-[0.25em] text-black/70 md:hidden">
-  <a href="#coleccion">Comprar</a>
-  <a href="#carrito">Carrito</a>
+  <a href="#producto" className="transition duration-300 hover:opacity-50">
+    Producto
+  </a>
+
+  <a href="#nosotros" className="transition duration-300 hover:opacity-50">
+    Nosotros
+  </a>
+
+  <a href="#carrito" className="transition duration-300 hover:opacity-50">
+    Carrito
+  </a>
 </div>
-            <a
-  href="#coleccion"
-  className="relative pb-1 text-[11px] uppercase tracking-[0.25em] text-black/70 transition duration-300 hover:opacity-50 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
->
-  Colección
-</a>
 
-<a
-  href="#coleccion"
-  className="relative pb-1 text-[11px] uppercase tracking-[0.25em] text-black/70 transition duration-300 hover:opacity-50 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
->
-  Playeras
-</a>
-
-<a
-  href="#nosotros"
-  className="relative pb-1 text-[11px] uppercase tracking-[0.25em] text-black/70 transition duration-300 hover:opacity-50 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
->
-  Nosotros
-</a>
-
-<a
-  href="#carrito"
-  className="relative pb-1 text-[11px] uppercase tracking-[0.25em] text-black/70 transition duration-300 hover:opacity-50 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
->
-  Carrito
-</a>
-          </div>
-        </nav>
-      </header>
+    <button
+      type="button"
+      onClick={() => setMenuOpen(true)}
+      className="block text-2xl font-light text-black md:hidden"
+    >
+      ☰
+    </button>
+  </div>
+</header>
 
       <section
   id="inicio"
@@ -86,23 +136,22 @@ if (loading) {
 >
         <div className="animate-[fadeIn_1s_ease-out] flex flex-col justify-center px-8 pt-28 md:px-24 xl:px-32">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] animate-fadeUp delay-100">
-            MADE IN THE SUR
+            MADE IN TABASCO
           </p>
 
-          <h2 className="max-w-4xl text-5xl md:text-8xl font-extralight leading-[0.9] tracking-[-0.07em] animate-fadeUp delay-200">
-            CALLE
+          <h2 className="max-w-4xl text-[3rem] font-extralight leading-[0.8] tracking-[-0.08em] md:text-7xl xl:text-[7rem]">
+            CALLEJÓN
             <br />
-            CON ESTILO
+            ZETA
           </h2>
 
-          <p className="mb-10 max-w-md text-lg leading-relaxed text-gray-600">
+          <p className="mb-10 max-w-md text-base md:text-lg leading-relaxed text-gray-600">
             Del sur, con identidad.
-            Prendas diseñadas para destacar sin esfuerzo.
           </p>
 
           <a
   href="#coleccion"
-  className="w-fit border border-black px-10 py-4 text-sm uppercase tracking-[0.2em] transition duration-300 hover:bg-black hover:text-white animate-fadeUp delay-300"
+  className="w-fit border border-black px-8 py-4 text-xs uppercase tracking-[0.28em] transition duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl md:px-10 md:text-sm animate-fadeUp delay-300"
 >
   VER DROP 001
 </a>
@@ -114,7 +163,7 @@ if (loading) {
   <div className="relative h-[75vh] w-full overflow-hidden rounded-[28px] border-0 md:border-white/10 bg-[#0d0d0d] shadow-[0_20px_60px_rgba(255,255,255,0.04)] transition duration-500 hover:shadow-[0_30px_90px_rgba(255,255,255,0.08)]">
     <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
     <img
-      src="/images/hero.jpg"
+      src="/Images/hero.png"
       alt="Diseño editorial de Callejón Zeta"
       className="h-full w-full object-contain p-8 transition duration-700 hover:scale-105 hover:-translate-y-2"
     />
@@ -243,10 +292,11 @@ if (loading) {
 </section>
 <section id="producto" className="bg-white px-8 py-32 md:px-20">
   <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
-    <div className="rounded-[32px] bg-[#f7f7f7] p-6 md:p-12 transition duration-500 hover:shadow-2xl md:sticky md:top-28">
+    <div className="group rounded-[32px] bg-[#f7f7f7] p-6 transition duration-500 hover:shadow-[0_30px_90px_rgba(0,0,0,0.08)] md:p-12">
       <img
-        src="/images/hero.jpg"
+        src="/Images/hero.png"
         alt="Playera oversized Callejón Zeta"
+        className="h-[700px] w-full object-contain transition duration-700 group-hover:-translate-y-2 group-hover:scale-105 md:h-[720px]"
         
       />
     </div>
@@ -262,7 +312,13 @@ if (loading) {
 
       <p className="mb-6 text-xl">
         $449 MXN
-      </p>
+        </p>
+        <div className="mt-8 space-y-3 text-xs uppercase tracking-[0.25em] text-black/60">
+  <p>• Oversized Fit</p>
+  <p>• 300 GSM Premium</p>
+  <p>• Edición limitada</p>
+  <p>• Hecho en México</p>
+</div>
 
       <p className="mb-10 max-w-lg text-[15px] leading-[1.9] text-gray-500">
         Playera oversized con estética urbana, corte amplio y diseño limpio.
@@ -328,10 +384,12 @@ if (loading) {
       Callejón Zeta
     </p>
     <h2 className="text-5xl font-extralight tracking-[-0.04em] md:text-7xl">
-  HECHO CON
+  ¿POR QUÉ
+<br />
+CALLEJÓN ZETA?
 </h2>
 <p className="mx-auto mt-8 max-w-md text-base leading-relaxed text-gray-500">
-  Autenticidad, cultura y presencia urbana en piezas con carácter.
+  Diseño inspirado en el sur. Prendas premium en drops limitados.
 </p>
   </div>
 </section>
@@ -367,12 +425,29 @@ CON CARÁCTER
     CON IDENTIDAD.
   </h2>
 </section>
+<section className="bg-black px-8 py-32 text-white md:px-20">
+  <p className="mb-8 text-xs uppercase tracking-[0.4em] text-white/50">
+    Callejón Zeta
+  </p>
+
+  <h2 className="text-5xl font-light leading-none tracking-[-0.06em] md:text-8xl">
+    DEL SUR.
+    <br />
+    CON IDENTIDAD.
+  </h2>
+
+  <p className="mt-10 text-sm uppercase tracking-[0.3em] text-white/50">
+    Villahermosa, Tabasco
+  </p>
+</section>
 <footer className="bg-white px-8 py-12 text-black md:px-20">
   <div className="flex flex-col gap-8 border-t border-black/10 pt-8 md:flex-row md:items-center md:justify-between">
     <h4 className="text-lg font-extralight uppercase tracking-[0.45em]">
   CALLEJÓN ZETA
 </h4>
-
+<p className="mt-4 text-xs uppercase tracking-[0.25em] text-black/40">
+  Villahermosa, Tabasco
+</p>
     <div className="flex gap-10 text-[11px] uppercase tracking-[0.28em] text-black/70">
       <a
   href="https://www.instagram.com/callejonzetamx?igsh=Z3NkNm9xaW5zaDUy&utm_source=qr"
@@ -419,15 +494,15 @@ CON CARÁCTER
 </h4>
 
 <div className="mb-6 flex items-center gap-3">
-  <p className="text-2xl font-light tracking-[-0.02em]">
-    $449
+  <p className="text-3xl font-extralight tracking-[-0.03em]">
+    $449 MXN
   </p>
 
   <span className="text-sm uppercase tracking-[0.25em] text-gray-400">
     MXN
   </span>
 </div>
-<p className="mb-8 text-xs uppercase tracking-[0.28em] text-gray-400">
+<p className="text-[11px] uppercase tracking-[0.32em] text-gray-500">
   Oversized fit • Drop 001 • Streetwear premium
 </p>
 <p className="mb-8 text-sm text-gray-500">
@@ -478,7 +553,7 @@ CON CARÁCTER
   <a
     href={`https://wa.me/529932191300?text=Hola,%20quiero%20realizar%20un%20pedido%20de%20Callej%C3%B3n%20Zeta.%0A%0AProducto:%20DROP%20001%20%E2%80%94%20ED%C3%89N%20URBANO%0ATalla:%20${selectedSize}%0APrecio:%20%24449%20MXN`}
     target="_blank"
-    className="mt-6 block w-full bg-black px-6 py-4 text-center text-xs uppercase tracking-[0.3em] text-white transition duration-300 hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-xl"
+    className="mt-6 block w-full bg-black px-5 py-3 text-center text-[11px] uppercase tracking-[0.3em] text-white transition duration-300 hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-xl"
   >
     Finalizar compra · Talla {selectedSize}
   </a>
