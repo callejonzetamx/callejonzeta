@@ -1,6 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+const products = [
+  {
+    id: 1,
+    drop: "DROP 001",
+    name: "Tabasco Urbano Oversized",
+    price: 449,
+    image: "/Images/Tabasco Urbano.png",
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Playera oversized con estética urbana, corte amplio y diseño limpio.",
+  },
+];
 export default function Home() {
   const [selectedSize, setSelectedSize] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -158,20 +170,13 @@ if (loading) {
 </a>
         </div>
 
-        <div className="flex min-h-[48vh] items-center justify-center bg-black p-6 md:min-h-screen">
-          <div className="flex h-[75vh] w-full items-center justify-center border-0 md:border md:border-white/20 text-white">
-            <div className="flex h-full w-full items-center justify-center p-10 md:p-16">
-  <div className="relative h-[75vh] w-full overflow-hidden rounded-[28px] border-0 md:border-white/10 bg-[#0d0d0d] shadow-[0_20px_60px_rgba(255,255,255,0.04)] transition duration-500 hover:shadow-[0_30px_90px_rgba(255,255,255,0.08)]">
-    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-    <img
-      src="/Images/hero.png"
-      alt="Diseño editorial de Callejón Zeta"
-      className="h-full w-full object-contain p-8 transition duration-700 hover:scale-105 hover:-translate-y-2"
-    />
-  </div>
+        <div className="min-h-[70vh] bg-black md:min-h-screen">
+  <img
+    src={products[0].image}
+    alt="Diseño editorial de Callejón Zeta"
+    className="h-[70vh] w-full object-cover md:h-screen"
+  />
 </div>
-          </div>
-        </div>
       </section>
       <section className="border-y border-black/10 bg-white py-8">
   <div className="flex flex-wrap items-center justify-center gap-6 px-8 text-center text-xs uppercase tracking-[0.35em] text-black/60 md:gap-14">
@@ -211,15 +216,15 @@ if (loading) {
   <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
 
     <div className="group cursor-pointer transition duration-500 hover:scale-[1.01]">
-      <div className="relative mb-5 overflow-hidden bg-[#f4f4f4] p-6 transition duration-500 group-hover:-translate-y-2 group-hover:bg-[#ececec] group-hover:shadow-xl">
+      <div className="relative mb-5 overflow-hidden bg-[#f4f4f4] transition duration-500 ...">
 
-  <span className="absolute left-4 top-4 bg-black px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
+  <span className="absolute left-4 top-4 z-10 bg-black px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
     Nuevo
   </span>
         <img
-          src="/images/hero.jpg"
+          src="/images/MODELO.png"
           alt="Playera Callejón Zeta"
-          className="h-[420px] w-full object-contain"
+          className="h-[420px] w-full object-cover"
         />
       </div>
       <div className="mb-5 inline-flex border border-black/10 bg-[#f7f7f7] px-4 py-2 text-[10px] uppercase tracking-[0.35em] text-gray-600">
@@ -230,7 +235,7 @@ if (loading) {
       </h4>
 
       <div className="mb-5 flex gap-2 text-xs">
-  {["S", "M", "L", "XL"].map((size) => (
+  {products[0].sizes.map((size) => (
     <button
       key={size}
       onClick={() => setSelectedSize(size)}
@@ -295,7 +300,7 @@ if (loading) {
   <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
     <div className="group rounded-[32px] bg-[#f7f7f7] p-6 transition duration-500 hover:shadow-[0_30px_90px_rgba(0,0,0,0.08)] md:p-12">
       <img
-        src="/Images/hero.png"
+        src="/Images/MODELO.png"
         alt="Playera oversized Callejón Zeta"
         className="h-[700px] w-full object-contain transition duration-700 group-hover:-translate-y-2 group-hover:scale-105 md:h-[720px]"
         
@@ -308,11 +313,11 @@ if (loading) {
       </p>
 
       <h3 className="mb-4 text-4xl font-light">
-        Tabasco Urbano Oversized
-      </h3>
+  {products[0].name}
+</h3>
 
       <p className="mb-6 text-xl">
-        $449 MXN
+        {`$${products[0].price} MXN`}
         </p>
         <div className="mt-8 space-y-3 text-xs uppercase tracking-[0.25em] text-black/60">
   <p>• Oversized Fit</p>
@@ -322,9 +327,8 @@ if (loading) {
 </div>
 
       <p className="mb-10 max-w-lg text-[15px] leading-[1.9] text-gray-500">
-        Playera oversized con estética urbana, corte amplio y diseño limpio.
-        Creada para quienes buscan presencia sin exagerar.
-      </p>
+  {products[0].description}
+</p>
       <div className="mb-8">
   <p className="mb-3 text-xs uppercase tracking-[0.25em]">
     Talla
@@ -415,17 +419,7 @@ CON CARÁCTER
     </div>
   </div>
 </section>
-<section className="bg-black px-8 py-28 text-center text-white md:px-20">
-  <p className="mb-4 text-xs uppercase tracking-[0.35em] text-white/50">
-    Callejón Zeta
-  </p>
 
-  <h2 className="mx-auto max-w-5xl text-5xl font-extralight leading-none tracking-[-0.04em] md:text-7xl xl:text-8xl">
-    DEL SUR.
-    <br />
-    CON IDENTIDAD.
-  </h2>
-</section>
 <section className="bg-black px-8 py-32 text-white md:px-20">
   <p className="mb-8 text-xs uppercase tracking-[0.4em] text-white/50">
     Callejón Zeta
