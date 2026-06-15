@@ -81,3 +81,6 @@ html {
 .delay-300 {
   animation-delay: 0.45s;
 }
+html {
+  scroll-behavior: smooth;
+}

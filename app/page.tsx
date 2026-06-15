@@ -18,7 +18,34 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cart, setCart] = useState<any[]>([]);
   const [quantity, setQuantity] = useState(1);
+  const addToCart = () => {
+    const whatsappMessage = encodeURIComponent(
+  `Hola, quiero realizar un pedido de Callejón Zeta:
+
+Producto: ${cart[0]?.product.name}
+Talla: ${cart[0]?.size}
+Cantidad: ${cart[0]?.quantity}
+Total: $${((cart[0]?.product.price || 0) * (cart[0]?.quantity || 0)).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} MXN`
+);
+  if (!selectedSize) return;
+
+  setCart([
+    {
+      product: products[0],
+      size: selectedSize,
+      quantity,
+    },
+  ]);
+
+  setTimeout(() => {
+    document.getElementById("carrito")?.scrollIntoView({ behavior: "smooth" });
+  }, 100);
+};
 
 useEffect(() => {
   const handleScroll = () => {
@@ -231,31 +258,8 @@ if (loading) {
   Drop limitado
 </div>
       <h4 className="mb-1 text-lg">
-        DROP 001 — EDÉN URBANO
-      </h4>
-
-      <div className="mb-5 flex gap-2 text-xs">
-  {products[0].sizes.map((size) => (
-    <button
-      key={size}
-      onClick={() => setSelectedSize(size)}
-      className={`border px-4 py-2 transition duration-300 ${
-        selectedSize === size
-          ? "border-black bg-black text-white"
-          : "border-black/20 bg-white hover:bg-black hover:text-white"
-      }`}
-    >
-      {size}
-    </button>
-  ))}
-</div>
-
-{selectedSize && (
-  <p className="mb-5 text-sm text-gray-500">
-    Talla seleccionada: {selectedSize}
-  </p>
-)}
-
+  {products[0].drop} — {products[0].name}
+</h4>
   <a
   href="#producto"
   className="block w-full border border-black px-5 py-4 text-center text-xs uppercase tracking-[0.3em] transition duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl"
@@ -297,17 +301,17 @@ if (loading) {
   </div>
 </section>
 <section id="producto" className="bg-white px-8 py-32 md:px-20">
-  <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
-    <div className="group rounded-[32px] bg-[#f7f7f7] p-6 transition duration-500 hover:shadow-[0_30px_90px_rgba(0,0,0,0.08)] md:p-12">
+  <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-2">
+  <div className="group rounded-[32px] bg-[#f7f7f7] p-6 order-1 md:order-2">
       <img
         src="/Images/MODELO.png"
         alt="Playera oversized Callejón Zeta"
-        className="h-[700px] w-full object-contain transition duration-700 group-hover:-translate-y-2 group-hover:scale-105 md:h-[720px]"
+        className="h-[500px] w-full object-contain transition duration-700 group-hover:-translate-y-2 group-hover:scale-105 md:h-[720px]"
         
       />
     </div>
 
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center order-2 md:order-1">
       <p className="mb-4 text-xs uppercase tracking-[0.35em] text-gray-500">
         Callejón Zeta
       </p>
@@ -356,15 +360,16 @@ if (loading) {
       Talla seleccionada: {selectedSize}
     </p>
   )}
-</div>
+
 
 {selectedSize ? (
-  <a
-    href="#carrito"
-    className="block w-full bg-black px-6 py-4 text-center text-xs uppercase tracking-[0.3em] text-white transition duration-300 hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-xl"
+  <button
+    type="button"
+    onClick={addToCart}
+    className="block w-full bg-black px-6 py-4 text-center text-xs uppercase tracking-[0.3em] text-white transition duration-300 hover:bg-neutral-800"
   >
     Agregar talla {selectedSize} al carrito
-  </a>
+  </button>
 ) : (
   <button
     type="button"
@@ -379,7 +384,7 @@ if (loading) {
   <p>Cambios sujetos a disponibilidad de talla.</p>
   <p>Atención directa por WhatsApp.</p>
 </div>
-
+</div>
 </div>
 </div>
 </section>
@@ -478,100 +483,162 @@ CON CARÁCTER
     <h3 className="mb-8 text-4xl font-light">
       Carrito
     </h3>
+
     <p className="mb-8 text-sm text-gray-500">
-  Selecciona tu talla y finaliza tu pedido por WhatsApp.
-</p>
-    <div className="rounded-[28px] border border-black/10 bg-white p-8 shadow-sm transition duration-500 hover:shadow-xl md:p-10">
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h4 className="mb-2 text-lg">
-  Tabasco Urbano Oversized
-</h4>
+      Selecciona tu talla y finaliza tu pedido por WhatsApp.
+    </p>
 
-<div className="mb-6 flex items-center gap-3">
-  <p className="text-3xl font-extralight tracking-[-0.03em]">
-    $449 MXN
-  </p>
+    {cart.length === 0 ? (
+      <div className="rounded-[28px] border border-black/10 bg-white p-10 text-center shadow-sm md:p-14">
+        <h4 className="text-2xl font-light">
+          Tu carrito está vacío
+        </h4>
 
-  <span className="text-sm uppercase tracking-[0.25em] text-gray-400">
-    MXN
-  </span>
-</div>
-<p className="text-[11px] uppercase tracking-[0.32em] text-gray-500">
-  Oversized fit • Drop 001 • Streetwear premium
-</p>
-<p className="mb-8 text-sm text-gray-500">
-  Stock limitado • Disponible ahora
-</p>
-          <div className="text-gray-500">
-  <p className="text-sm text-gray-500">
-  Talla:{" "}
-  <span className="font-medium text-black">
-    {selectedSize || "Selecciona una talla"}
-  </span>
-</p>
-<p className="mt-2 text-sm text-gray-500">
-  Cantidad: <span className="font-medium text-black">{quantity}</span>
-</p>
-  <div className="mt-3 flex items-center gap-3">
-    <button
-  type="button"
-  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
->
-  -
-</button>
+        <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-gray-500">
+          Elige una talla en la sección de producto para agregar tu primera prenda.
+        </p>
 
-    <span>{quantity}</span>
+        <a
+          href="#producto"
+          className="mt-8 inline-block bg-black px-8 py-4 text-xs uppercase tracking-[0.3em] text-white transition duration-300 hover:bg-neutral-800"
+        >
+          Elegir talla
+        </a>
 
-    <button
-  type="button"
-  onClick={() => setQuantity((prev) => prev + 1)}
-  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
->
-  +
-</button>
-  </div>
-</div>
+        <p className="mt-6 text-xs tracking-[0.15em] text-gray-400">
+          Pago seguro • Atención personalizada • Envíos a todo México
+        </p>
+      </div>
+    ) : (
+      <div className="rounded-[28px] border border-black/10 bg-white p-8 shadow-sm transition duration-500 hover:shadow-xl md:p-10">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h4 className="mb-2 text-lg">
+              {cart[0]?.product.name}
+            </h4>
+
+            <div className="mb-6 flex items-center gap-3">
+              <p className="text-3xl font-extralight tracking-[-0.03em]">
+                ${cart[0]?.product.price}
+              </p>
+
+              <span className="text-sm uppercase tracking-[0.25em] text-gray-400">
+                MXN
+              </span>
+            </div>
+
+            <p className="text-[11px] uppercase tracking-[0.32em] text-gray-500">
+              Oversized fit • Drop 001 • Streetwear premium
+            </p>
+
+            <p className="mb-8 text-sm text-gray-500">
+              Stock limitado • Disponible ahora
+            </p>
+
+            <div className="text-gray-500">
+              <p className="text-sm text-gray-500">
+                Talla:{" "}
+                <span className="font-medium text-black">
+                  {cart[0]?.size}
+                </span>
+              </p>
+
+              <div className="mt-3 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCart((prev) =>
+                      prev.map((item, index) =>
+                        index === 0
+                          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+                          : item
+                      )
+                    )
+                  }
+                  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
+                >
+                  -
+                </button>
+
+                <span className="text-lg font-light tracking-[0.15em]">
+                  {cart[0]?.quantity}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setCart((prev) =>
+                      prev.map((item, index) =>
+                        index === 0
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item
+                      )
+                    )
+                  }
+                  className="border border-black/10 px-4 py-3 transition duration-300 hover:bg-black hover:text-white hover:shadow-md"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-lg">
+            {`$${((cart[0]?.product.price || 0) * (cart[0]?.quantity || 0)).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} MXN`}
+          </p>
         </div>
 
-        <p className="text-lg">
-          ${449 * quantity} MXN
+        <div className="my-8 border-t border-black/10"></div>
+
+        <div className="flex items-center justify-between">
+          <p className="uppercase tracking-[0.25em]">
+            Total
+          </p>
+
+          <p className="text-xl">
+            {`$${((cart[0]?.product.price || 0) * (cart[0]?.quantity || 0)).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} MXN`}
+          </p>
+        </div>
+
+        <a
+          href={`https://wa.me/529932191300?text=${encodeURIComponent(
+            `Hola, quiero comprar:
+
+Producto: ${cart[0]?.product.name}
+Talla: ${cart[0]?.size}
+Cantidad: ${cart[0]?.quantity}
+Total: $${((cart[0]?.product.price || 0) * (cart[0]?.quantity || 0)).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })} MXN`
+          )}`}
+          target="_blank"
+          className="mt-6 block w-full bg-black px-6 py-4 text-center text-xs uppercase tracking-[0.3em] text-white transition duration-300 hover:bg-neutral-800"
+        >
+          Finalizar compra
+        </a>
+
+        <button
+          type="button"
+          onClick={() => {
+            setCart([])
+          }}
+          className="mt-4 w-full border border-black/20 px-6 py-4 text-center text-xs uppercase tracking-[0.3em] transition duration-300 hover:bg-black hover:text-white"
+        >
+          Vaciar carrito
+        </button>
+
+        <p className="mt-4 text-center text-xs tracking-[0.15em] text-gray-400">
+          Pago seguro • Atención personalizada • Envíos a todo México
         </p>
       </div>
-
-      <div className="my-8 border-t border-black/10"></div>
-
-      <div className="flex items-center justify-between">
-        <p className="uppercase tracking-[0.25em]">
-          Total
-        </p>
-
-        <p className="text-xl">
-          $449 MXN
-        </p>
-      </div>
-
-      {selectedSize ? (
-  <a
-    href={`https://wa.me/529932191300?text=Hola,%20quiero%20realizar%20un%20pedido%20de%20Callej%C3%B3n%20Zeta.%0A%0AProducto:%20DROP%20001%20%E2%80%94%20ED%C3%89N%20URBANO%0ATalla:%20${selectedSize}%0APrecio:%20%24449%20MXN`}
-    target="_blank"
-    className="mt-6 block w-full bg-black px-5 py-3 text-center text-[11px] uppercase tracking-[0.3em] text-white transition duration-300 hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-xl"
-  >
-    Finalizar compra · Talla {selectedSize}
-  </a>
-) : (
-  <button
-    type="button"
-    className="mt-6 block w-full cursor-not-allowed bg-gray-300 px-6 py-4 text-center text-xs uppercase tracking-[0.3em] text-gray-500"
-  >
-    Selecciona una talla
-  </button>
-)}
-<p className="mt-4 text-center text-xs tracking-[0.15em] text-gray-400">
-  Pago seguro • Atención personalizada • Envíos a todo México
-</p>
-    </div>
+    )}
   </div>
 </section>
 <section className="bg-white px-8 py-16 md:px-20">
