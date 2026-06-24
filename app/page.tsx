@@ -251,7 +251,7 @@ if (loading) {
         <img
           src="/images/Model.png"
           alt="Playera Callejón Zeta"
-          className="h-[520px] w-full object-cover"
+          className="h-[620px] w-full object-cover"
         />
       </div>
       <div className="mb-5 inline-flex border border-black/10 bg-[#f7f7f7] px-4 py-2 text-[10px] uppercase tracking-[0.35em] text-gray-600">
