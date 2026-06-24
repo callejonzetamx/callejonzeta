@@ -7,7 +7,7 @@ const products = [
     drop: "DROP 001",
     name: "Tabasco Urbano Oversized",
     price: 449,
-    image: "/Images/Tabasco Urbano.png",
+    image: "/Images/Tabasco Urban.png",
     sizes: ["S", "M", "L", "XL"],
     description:
       "Playera oversized con estética urbana, corte amplio y diseño limpio.",
