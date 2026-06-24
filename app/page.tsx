@@ -249,7 +249,7 @@ if (loading) {
     Nuevo
   </span>
         <img
-          src="/images/MODELO.png"
+          src="/images/Model.png"
           alt="Playera Callejón Zeta"
           className="h-[420px] w-full object-cover"
         />
